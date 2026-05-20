@@ -30,6 +30,8 @@ pipeline {
         
         stage('docker') {
             steps {
+				sh 'docker ps'
+
                 sh 'docker images'
 
                 sh 'docker build -t calcwebappmvn:v1 .'
