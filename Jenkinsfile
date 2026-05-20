@@ -1,42 +1,58 @@
 pipeline {
-    agent any
+    
+    agent {
+        label 'linux' 
+    }
+    
+    tools {
+        maven 'xyz-maven'
+        //docker
+    }
+    
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/rchidana/calcwebapp.git'    
+                git url: 'https://github.com/mayur-z/calcwebappmvn.git'    
 		            echo "Code Checked-out Successfully!!";
+		            sh 'ls -la'
             }
         }
         
-        stage('Package') {
-            steps {
-                bat 'mvn package'    
-		            echo "Maven Package Goal Executed Successfully!";
-            }
-        }
-        
-        stage('JUNit Reports') {
-            steps {
-                    junit 'target/surefire-reports/*.xml'
-		                echo "Publishing JUnit reports"
-            }
-        }
-        
-        stage('Jacoco Reports') {
-            steps {
-                  jacoco()
-                  echo "Publishing Jacoco Code Coverage Reports";
-            }
-        }
-
-	stage('SonarQube analysis') {
-            steps {
-		// Change this as per your Jenkins Configuration
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn package sonar:sonar'
+            stage('Package') {
+                steps {
+                    sh 'mvn clean package'    
+    		            echo "Maven Package Goal Executed Successfully!";
+    		            sh  'ls -la'
                 }
             }
+        
+        stage('docker') {
+            steps {
+                
+                
+                
+                
+                
+                   // junit 'target/surefire-reports/*.xml'
+		           //     echo "Publishing JUnit reports"
+            }
         }
+        
+//         stage('Jacoco Reports') {
+//             steps {
+//                   jacoco()
+//                   echo "Publishing Jacoco Code Coverage Reports";
+//             }
+//         }
+
+// // 	stage('SonarQube analysis') {
+//             steps {
+// 		// Change this as per your Jenkins Configuration
+//                 withSonarQubeEnv('SonarQube') {
+//                     bat 'mvn package sonar:sonar'
+//                 }
+//             }
+//         }
     }
     post {
         
