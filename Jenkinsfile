@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'ag-2'
+        label 'ag-1'
     }
     environment {
         cluster_name = "my-cluster-1"
@@ -8,21 +8,21 @@ pipeline {
         IMAGE_NAME = "calcwebappmvn:v1"
         my_aws_access = credentials('my-aws-cred')
     }
-    tools {
-        maven 'xyz-maven'
-    }
+    # tools {
+    #     maven 'xyz-maven'
+    # }
 
     stages {
 
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/mayur-z/calcwebappmvn.git'
+                git url: 'https://github.com/Sushant-7070/calcwebappmvn.git'
                 echo "Code Checked-out Successfully!!";
                 sh 'ls -la'
             }
         }
 
-        stage('SonarQube analysis') {
+       /* stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
                     sh 'mvn clean verify sonar:sonar'
@@ -131,7 +131,7 @@ pipeline {
             }
         }
 
-
+*/
 
 
 
