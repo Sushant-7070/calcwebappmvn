@@ -8,10 +8,10 @@ pipeline {
         IMAGE_NAME = "calcwebappmvn:v1"
         my_aws_access = credentials('my-aws-cred')
     }
-    # tools {
-    #     maven 'xyz-maven'
-    # }
-
+    /* tools {
+         maven 'xyz-maven'
+    }
+    */
     stages {
 
         stage('Git Checkout') {
