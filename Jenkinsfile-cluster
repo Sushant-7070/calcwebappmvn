@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'ag-2' 
+        label 'ag-1' 
         }
     environment {
         my_aws_access= credentials('my-aws-cred')
