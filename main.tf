@@ -31,7 +31,7 @@ data "aws_subnets" "default" { // Fetch  all subnets in the default VPC
 }
 
 resource "aws_iam_role" "eks_cluster_role" { // IAM role for EKS cluster
-  name = "eks-cluster-role"   // Name of the cluster role
+  name = "eks-cluster-role-ss"   // Name of the cluster role
 
   assume_role_policy = jsonencode({ // Assume role policy
     Version = "2012-10-17"
@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {  // Attach EKS 
 
 
 resource "aws_iam_role" "node_role" { // IAM role for EKS worker nodes
-  name = "eks-node-role" // Name of the node role
+  name = "eks-node-role-ss" // Name of the node role
 
   assume_role_policy = jsonencode({ // Assume role policy
     Version = "2012-10-17"
