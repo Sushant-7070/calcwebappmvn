@@ -95,6 +95,7 @@ pipeline {
         stage('kubeconfig setup') {
             steps {
                 sh 'aws eks update-kubeconfig --region ${Region} --name ${cluster_name}'
+                sh 'kubectl delete secret my-ecr-secret-cbz --ignore-not-found=true'
                 sh '''kubectl create secret docker-registry my-ecr-secret-cbz \
                       --docker-server=964742912902.dkr.ecr.${Region}.amazonaws.com \
                       --docker-username=AWS \
